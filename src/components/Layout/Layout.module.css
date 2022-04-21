@@ -1,0 +1,20 @@
+.container {
+  height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  margin: 0 auto;
+}
+.main {
+  margin-top: 0.6rem;
+}
+.themeSwitcher {
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  color: #b3c5cd;
+  margin-left: 4px;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  float: right;
+}

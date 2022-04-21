@@ -1,0 +1,42 @@
+.container {
+  margin: 0 16px;
+}
+
+.today {
+  /* border: 1px solid blue; */
+}
+
+.today > h1 {
+  margin: 0;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.todayContent {
+  width: 75%;
+  padding: 30px;
+}
+
+.upcoming {
+  width: 25%;
+  padding: 30px 0;
+}
+
+@media only screen and (max-width: 998px) {
+  .todayContent {
+    width: 100%;
+    max-width: 95vw;
+    padding: 10px;
+  }
+  .upcoming {
+    width: 100%;
+  }
+  .tmrwContent,
+  .datContent {
+    max-width: 95vw;
+  }
+}
