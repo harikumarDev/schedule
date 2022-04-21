@@ -1,9 +1,10 @@
 import { useContext } from "react";
-import styles from "./Layout.module.css";
 import Head from "next/head";
 import Link from "next/link";
+import Image from "next/image";
 import { AppBar, Toolbar, Container } from "@mui/material";
 import { Brightness6Rounded } from "@mui/icons-material";
+import styles from "./Layout.module.css";
 import { ThemeContext } from "../../context/ThemeContext";
 
 export default function Layout({ children, title = "Schedule" }) {
@@ -28,8 +29,8 @@ export default function Layout({ children, title = "Schedule" }) {
       <AppBar position="static" className={styles.header}>
         <Container maxWidth="100%">
           <Toolbar disableGutters sx={{ justifyContent: "space-between" }}>
-            <Link href="/">
-              <img src="/logo.svg" alt="logo" height="50px" width="50px" />
+            <Link href="/" passHref={true}>
+              <Image src="/logo.svg" alt="logo" height="50px" width="50px" />
             </Link>
             <button className={styles.themeSwitcher} onClick={switchTheme}>
               <Brightness6Rounded />

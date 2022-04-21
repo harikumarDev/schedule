@@ -65,7 +65,7 @@ export default function HomePage({ data }) {
                         <TableCell>{row.site}</TableCell>
                         <TableCell>{getTime(row.start_time)}</TableCell>
                         <TableCell>
-                          <a target="_blank" href={row.url}>
+                          <a target="_blank" rel="noreferrer" href={row.url}>
                             Go
                           </a>
                         </TableCell>
@@ -99,7 +99,7 @@ export default function HomePage({ data }) {
                         <TableCell>{row.site}</TableCell>
                         <TableCell>{getTime(row.start_time)}</TableCell>
                         <TableCell>
-                          <a target="_blank" href={row.url}>
+                          <a target="_blank" rel="noreferrer" href={row.url}>
                             Go
                           </a>
                         </TableCell>
