@@ -16,5 +16,19 @@
   display: flex;
   justify-content: center;
   cursor: pointer;
-  float: right;
+}
+.headerLinks {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 5%;
+  position: fixed;
+  top: 0.9em;
+  right: 1.5em;
+}
+
+@media only screen and (max-width: 600px) {
+  .headerLinks {
+    right: 3em;
+  }
 }

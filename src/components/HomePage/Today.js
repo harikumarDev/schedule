@@ -45,7 +45,7 @@ export default function Today({ data }) {
                   </TableCell>
                   <TableCell>{row.site}</TableCell>
                   <TableCell>{getTime(row.start_time)}</TableCell>
-                  <TableCell>{row.duration / 3600} Hrs</TableCell>
+                  <TableCell>{(row.duration / 3600).toFixed(2)} Hrs</TableCell>
                   <TableCell>
                     <a target="_blank" rel="noreferrer" href={row.url}>
                       Go

@@ -1,0 +1,19 @@
+.container {
+  margin: 0 16px;
+}
+.add > h1 {
+  margin: 0;
+}
+.formCont {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.addForm {
+  width: 100%;
+  max-width: 500px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

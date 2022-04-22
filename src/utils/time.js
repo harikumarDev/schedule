@@ -14,3 +14,17 @@ export const getLocalTime = (time) => {
     timeZone: "Asia/Kolkata",
   });
 };
+
+export const ISTToUTC = (time) => {
+  const date = new Date(time);
+  return date.toISOString();
+};
+
+export const timeDiff = (startTime, endTime) => {
+  const start = new Date(startTime);
+  const end = new Date(endTime);
+  console.log("ST NF EN", start, end);
+  const diff = end.getTime() - start.getTime();
+
+  return diff / 1000;
+};
