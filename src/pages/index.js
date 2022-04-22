@@ -12,14 +12,19 @@ const getTime = (utc) => {
 
 export const getServerSideProps = async (context) => {
   let { data } = await axios.get("https://kontests.net/api/v1/all");
-  await db.connect();
-  let tasks = await Task.find({}).lean();
-  await db.disconnect();
-  tasks = tasks.map(db.convertDocToObj);
   data = data.map((row) => ({
     ...row,
     start_time: getTime(row.start_time),
   }));
+  let tasks;
+  try {
+    await db.connect();
+    tasks = await Task.find({}).lean();
+    await db.disconnect();
+    tasks = tasks.map(db.convertDocToObj);
+  } catch (err) {
+    console.log(err);
+  }
 
   return {
     props: {

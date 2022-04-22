@@ -32,15 +32,18 @@ export default function AddPage() {
 
   const handleAdd = async (e) => {
     e.preventDefault();
+    try {
+      const { data } = await axios.post("/api/addtask", {
+        name: form.name,
+        start_time: ISTToUTC(form.start_time),
+        end_time: ISTToUTC(form.end_time),
+        duration: timeDiff(ISTToUTC(form.start_time), ISTToUTC(form.end_time)),
+      });
 
-    const { data } = await axios.post("/api/addtask", {
-      name: form.name,
-      start_time: ISTToUTC(form.start_time),
-      end_time: ISTToUTC(form.end_time),
-      duration: timeDiff(ISTToUTC(form.start_time), ISTToUTC(form.end_time)),
-    });
-
-    router.push("/");
+      router.push("/");
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
