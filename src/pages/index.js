@@ -3,6 +3,7 @@ import Layout from "../components/Layout/Layout";
 import HomePage from "../components/HomePage/HomePage";
 import Task from "../models/Task";
 import db from "../utils/db";
+import { useEffect, useState } from "react";
 
 const getTime = (utc) => {
   return new Date(utc).toLocaleString("en-US", {
@@ -16,36 +17,36 @@ export const getServerSideProps = async (context) => {
     ...row,
     start_time: getTime(row.start_time),
   }));
-  let tasks;
-  try {
-    await db.connect();
-    tasks = await Task.find({}).lean();
-    await db.disconnect();
-    tasks = tasks.map(db.convertDocToObj);
-  } catch (err) {
-    console.log(err);
-  }
-
   return {
     props: {
-      data: [
-        ...data.filter(
-          (item) =>
-            item.site === "CodeForces" ||
-            item.site === "CodeChef" ||
-            item.site === "Kick Start" ||
-            item.site === "LeetCode"
-        ),
-        ...tasks,
-      ],
+      data: data.filter(
+        (item) =>
+          item.site === "CodeForces" ||
+          item.site === "CodeChef" ||
+          item.site === "Kick Start" ||
+          item.site === "LeetCode"
+      ),
     },
   };
 };
 
 export default function Home({ data }) {
+  const [tasks, setTasks] = useState(null);
+
+  useEffect(() => {
+    const getData = async () => {
+      const { data } = await axios.get("/api/getTasks");
+      let { tasks } = data;
+      tasks = tasks.map(db.convertDocToObj);
+      setTasks(tasks);
+    };
+
+    getData();
+  }, []);
+
   return (
     <Layout>
-      <HomePage data={data} />
+      {tasks ? <HomePage data={[...data, ...tasks]} /> : <h2>Loading...</h2>}
     </Layout>
   );
 }
