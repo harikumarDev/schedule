@@ -11,6 +11,7 @@ const clientSideEmotionCache = createEmotionCache();
 
 function MyApp(props) {
   const [theme, setTheme] = useState("light");
+  const [showing, setShowing] = useState(false);
 
   useEffect(() => {
     setTheme(
@@ -19,6 +20,18 @@ function MyApp(props) {
         : "light"
     );
   }, []);
+
+  useEffect(() => {
+    setShowing(true);
+  }, []);
+
+  if (!showing) {
+    return null;
+  }
+
+  if (typeof window === "undefined") {
+    return <></>;
+  }
 
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
 

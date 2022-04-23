@@ -3,7 +3,6 @@ import Layout from "../components/Layout/Layout";
 import HomePage from "../components/HomePage/HomePage";
 import db from "../utils/db";
 import Task from "../models/Task";
-import { useEffect, useState } from "react";
 
 const getTime = (utc) => {
   return new Date(utc).toLocaleString("en-US", {
@@ -16,6 +15,7 @@ export const getStaticProps = async (context) => {
   data = data.map((row) => ({
     ...row,
     start_time: getTime(row.start_time),
+    end_time: getTime(row.end_time),
   }));
 
   let tasks;
@@ -29,7 +29,7 @@ export const getStaticProps = async (context) => {
   }
 
   return {
-    revalidate: 900,
+    revalidate: 10,
     props: {
       data: [
         ...data.filter(

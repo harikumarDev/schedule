@@ -8,11 +8,20 @@ import {
   TableRow,
   Paper,
 } from "@mui/material";
-import { getTime, getLocalTime } from "../../utils/time";
+import { getTime, getTime2, getLocalTime } from "../../utils/time";
 
-const isToday = (contestDate) => {
+const isToday = (contestDate, endDate) => {
   const date = getLocalTime();
-  return date.substring(0, 9) === contestDate.substring(0, 9);
+  const presentTime = new Date().getTime();
+  const startTime = new Date(contestDate).getTime();
+  const endTime = new Date(endDate).getTime();
+
+  if (presentTime > endTime) return false;
+
+  return (
+    date.substring(0, 9) === contestDate.substring(0, 9) ||
+    (presentTime >= startTime && presentTime <= endTime)
+  );
 };
 
 export default function Today({ data }) {
@@ -25,6 +34,7 @@ export default function Today({ data }) {
               <TableCell>Name</TableCell>
               <TableCell>Site</TableCell>
               <TableCell>Start Time</TableCell>
+              <TableCell>End Time</TableCell>
               <TableCell>Duration</TableCell>
               <TableCell>Link</TableCell>
               <TableCell>Status</TableCell>
@@ -32,7 +42,7 @@ export default function Today({ data }) {
           </TableHead>
           <TableBody>
             {data
-              .filter((item) => isToday(item.start_time))
+              .filter((item) => isToday(item.start_time, item.end_time))
               .map((row) => (
                 <TableRow
                   key={row.name}
@@ -45,6 +55,7 @@ export default function Today({ data }) {
                   </TableCell>
                   <TableCell>{row.site}</TableCell>
                   <TableCell>{getTime(row.start_time)}</TableCell>
+                  <TableCell>{getTime2(row.end_time)}</TableCell>
                   <TableCell>{(row.duration / 3600).toFixed(2)} Hrs</TableCell>
                   <TableCell>
                     <a target="_blank" rel="noreferrer" href={row.url}>

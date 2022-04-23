@@ -62,7 +62,9 @@ export default function HomePage({ data }) {
                           "&:last-child td, &:last-child th": { border: 0 },
                         }}
                       >
-                        <TableCell>{row.site}</TableCell>
+                        <TableCell>
+                          {row.site === "Manual" ? row.name : row.site}
+                        </TableCell>
                         <TableCell>{getTime(row.start_time)}</TableCell>
                         <TableCell>
                           <a target="_blank" rel="noreferrer" href={row.url}>
@@ -96,7 +98,9 @@ export default function HomePage({ data }) {
                           "&:last-child td, &:last-child th": { border: 0 },
                         }}
                       >
-                        <TableCell>{row.site}</TableCell>
+                        <TableCell>
+                          {row.site === "Manual" ? row.name : row.site}
+                        </TableCell>
                         <TableCell>{getTime(row.start_time)}</TableCell>
                         <TableCell>
                           <a target="_blank" rel="noreferrer" href={row.url}>

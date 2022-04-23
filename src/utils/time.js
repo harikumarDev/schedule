@@ -8,6 +8,12 @@ export const getTime = (contestTime) => {
   return timeString;
 };
 
+export const getTime2 = (contestTime) => {
+  // Time => 4/10/2022, 4:00:00 PM
+  const time = contestTime.split(":");
+  return time[0] + ":" + time[1] + " " + time[2].split(" ")[1];
+};
+
 export const getLocalTime = (time) => {
   const date = time ? new Date(time) : new Date();
   return date.toLocaleString("en-US", {

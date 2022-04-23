@@ -64,6 +64,7 @@ const convertDocToObj = (doc) => {
   doc.createdAt = doc.createdAt.toString();
   doc.updatedAt = doc.updatedAt.toString();
   doc.start_time = getTime(doc.start_time);
+  doc.end_time = getTime(doc.end_time);
 
   return doc;
 };
