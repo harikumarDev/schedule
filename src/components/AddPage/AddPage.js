@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, TextField } from "@mui/material";
+import { Button, TextField, CircularProgress } from "@mui/material";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { MobileDateTimePicker } from "@mui/x-date-pickers/MobileDateTimePicker";
@@ -24,6 +24,7 @@ export default function AddPage() {
     start_time: todaysDate(),
     end_time: todaysDate(),
   });
+  const [disabled, setDisabled] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -32,6 +33,7 @@ export default function AddPage() {
 
   const handleAdd = async (e) => {
     e.preventDefault();
+    setDisabled(true);
     try {
       const { data } = await axios.post("/api/addtask", {
         name: form.name,
@@ -39,10 +41,11 @@ export default function AddPage() {
         end_time: ISTToUTC(form.end_time),
         duration: timeDiff(ISTToUTC(form.start_time), ISTToUTC(form.end_time)),
       });
-
       router.push("/");
+      setDisabled(false);
     } catch (err) {
       console.log(err);
+      setDisabled(false);
     }
   };
 
@@ -92,8 +95,13 @@ export default function AddPage() {
             color="warning"
             style={{ marginTop: "1em" }}
             type="submit"
+            disabled={disabled}
           >
-            Add
+            {disabled ? (
+              <CircularProgress size={25} color="secondary" />
+            ) : (
+              <>Add</>
+            )}
           </Button>
         </form>
       </div>

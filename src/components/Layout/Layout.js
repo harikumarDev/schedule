@@ -37,8 +37,8 @@ export default function Layout({ children, title = "Schedule" }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <AppBar
-        position="static"
-        sx={{ background: navClr }}
+        position="fixed"
+        sx={{ background: navClr, top: 0, zIndex: 1 }}
         className={styles.header}
       >
         <Container sx={{ width: "90%", marginLeft: "0px" }}>

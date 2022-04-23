@@ -5,7 +5,7 @@
   margin: 0 auto;
 }
 .main {
-  margin-top: 0.6rem;
+  margin-top: 4.5rem;
 }
 .themeSwitcher {
   border: none;
@@ -23,12 +23,13 @@
   align-items: center;
   width: 5%;
   position: fixed;
-  top: 0.9em;
-  right: 1.5em;
+  top: 0.6%;
+  right: 2em;
 }
 
 @media only screen and (max-width: 600px) {
   .headerLinks {
-    right: 3em;
+    right: 4em;
+    top: 1.2%;
   }
 }
